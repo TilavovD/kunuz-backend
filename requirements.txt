@@ -1,1 +1,4 @@
-django
+django~=4.0.6
+django-ckeditor~=6.4.2
+djangorestframework~=3.13.1
+mutagen~=1.45.1

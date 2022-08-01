@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    "ckeditor",
+    "ckeditor_uploader",
+
     'common',
     'post',
+    'audio',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +133,49 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
+# CKEDITOR CONFIG
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_RESTRICT_BY_DATE = True
+CKEDITOR_FORCE_JPEG_COMPRESSION = True
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_ALLOW_NONIMAGE_FILES = True
+CKEDITOR_CONFIGS = {
+    "default": {
+        # "skin": "office2010",
+        "toolbar": "full",
+        "height": 400,
+        "width": "100%",
+        "removePlugins": "stylesheetparser",
+        "allowedContent": True,
+        "mathJaxLib": "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML",
+        "extraPlugins": ",".join(
+            [
+                # "ckeditor_wiris",
+                "uploadimage",  # the upload image feature
+                "adobeair",
+                "mathjax",
+                # "ckeditor_wiris",
+                "clipboard",
+                "filetools",
+                "find",
+                "forms",
+                "iframe",
+                "iframedialog",
+                "link",
+                "liststyle",
+                "menubutton",
+                "notification",
+                "notificationaggregator",
+                "pagebreak",
+                "preview",
+                "table",
+                "tableresize",
+                "tabletools",
+                "uploadwidget",
+            ]
+        ),
+    },
+}
 
 try:
     from .local_settings import *  # noqa
