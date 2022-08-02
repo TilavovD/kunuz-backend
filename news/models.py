@@ -12,9 +12,6 @@ class Category(BaseModel):
     def __str__(self):
         return self.name
 
-    def __str__(self):
-        return self.name
-
 
 class Tag(BaseModel):
     name = models.CharField(max_length=128)
@@ -22,12 +19,13 @@ class Tag(BaseModel):
 
 class Region(BaseModel):
     name = models.CharField(max_length=128)
+    slug = models.CharField(max_length=128)
 
     def __str__(self):
         return self.name
 
 
-class Post(BaseModel):
+class News(BaseModel):
     title = models.CharField(max_length=128)
     slug = models.CharField(max_length=128)
     sub_content = models.TextField()
@@ -40,11 +38,15 @@ class Post(BaseModel):
 
     views_count = models.PositiveIntegerField(default=0)
 
+
+    is_main = models.BooleanField(default=True)
     is_selected = models.BooleanField(default=False)
     is_global = models.BooleanField(default=False)
     is_interview = models.BooleanField(default=False)
     is_recommended = models.BooleanField(default=False)
     is_inquiry = models.BooleanField(default=False)
+    is_article = models.BooleanField(default=False)
+    is_ad = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

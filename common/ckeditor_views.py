@@ -36,7 +36,7 @@ def get_files_browse_urls(user=None):
 
 
 class ImageUploadView(generic.View):
-    http_method_names = ["post"]
+    http_method_names = ["news"]
 
     def post(self, request, **kwargs):
         """

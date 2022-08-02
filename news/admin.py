@@ -1,11 +1,11 @@
 from django.apps import apps
 from django.contrib import admin
-from .models import Post
+from .models import News
 
 # Register your models here.
 models = apps.get_models()
 
-@admin.register(Post)
+@admin.register(News)
 class Admin(admin.ModelAdmin):
     list_display = (
     'title', 'slug', 'category', 'region', 'views_count', 'is_interview', "is_inquiry", "is_global", "is_recommended",
