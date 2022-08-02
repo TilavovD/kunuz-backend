@@ -5,7 +5,7 @@ from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 from .models import News
-from news.serializer import NewsListSerializer, NewsDetailSerializer
+from news.serializer import NewsListSerializer, NewsDetailSerializer, CategorySerializer
 
 
 class MainNewsView(ListAPIView):
@@ -58,4 +58,14 @@ class NewsDetailView(RetrieveAPIView):
         # news[0].save(update_fields=['views_count'])
         # print(news[0].views_count)
 
+        return news
+
+
+class CategoryNewsView(ListAPIView):
+    serializer_class = NewsDetailSerializer
+    lookup_field = 'slug'
+
+    def get_queryset(self):
+        # print(self.kwargs)
+        news = News.objects.filter(category__slug=self.kwargs['slug'])
         return news
