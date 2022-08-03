@@ -25,8 +25,8 @@ def some_pre_save_receiver(sender, instance, raw, using, update_fields, **kwargs
     if hasattr(instance.track, 'file') and isinstance(instance.track.file, UploadedFile):
         file_was_updated = True
 
-    # if update_fields and "track" in update_fields:
-    #     file_was_updated = True
+    if update_fields and "track" in update_fields:
+        file_was_updated = True
 
     if file_was_updated:
         # read audio file metadata
