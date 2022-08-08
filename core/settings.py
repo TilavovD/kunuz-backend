@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'drf_yasg',
     'rest_framework',
+    'django_filters',
 
     "ckeditor",
     "ckeditor_uploader",
@@ -136,7 +137,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
@@ -186,6 +187,15 @@ CKEDITOR_CONFIGS = {
         ),
     },
 }
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
+
+
 
 try:
     from .local_settings import *  # noqa

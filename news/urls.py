@@ -8,7 +8,8 @@ from news.views import \
     GlobalNewsView, \
     InquiryNewsView, \
     ArticleNewsView, \
-    AdvertisementsView, NewsDetailView
+    AdvertisementsView, \
+    NewsDetailView
 
 urlpatterns = [
     path("<str:slug>", NewsDetailView.as_view(), name="news_detail"),

@@ -13,11 +13,6 @@ class TagSerializer(ModelSerializer):
         model = Tag
         fields = ("name",)
 
-class CategorySerializer(ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ("name",)
-
 class NewsDetailSerializer(ModelSerializer):
     tags = TagSerializer(many=True)
 

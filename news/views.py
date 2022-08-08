@@ -5,13 +5,12 @@ from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 from .models import News
-from news.serializer import NewsListSerializer, NewsDetailSerializer, CategorySerializer
+from news.serializer import NewsListSerializer, NewsDetailSerializer
 
 
 class MainNewsView(ListAPIView):
     serializer_class = NewsListSerializer
     queryset = News.objects.filter(is_main=True)
-
 
 class MostReadNewsView(ListAPIView):
     serializer_class = NewsListSerializer
@@ -62,10 +61,19 @@ class NewsDetailView(RetrieveAPIView):
 
 
 class CategoryNewsView(ListAPIView):
-    serializer_class = NewsDetailSerializer
+    serializer_class = NewsListSerializer
     lookup_field = 'slug'
 
     def get_queryset(self):
         # print(self.kwargs)
         news = News.objects.filter(category__slug=self.kwargs['slug'])
+        return news
+
+class RegionNewsView(ListAPIView):
+    serializer_class = NewsListSerializer
+    lookup_field = 'slug'
+
+    def get_queryset(self):
+        # print(self.kwargs)
+        news = News.objects.filter(region__slug__iexact=self.kwargs['slug'])
         return news
